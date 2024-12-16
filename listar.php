@@ -19,6 +19,7 @@ $stmt->execute();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,27 +29,38 @@ $stmt->execute();
 
 <body>
     <?php include 'navbar.php'; ?>
-    <h2>Usuários Cadastrados</h2>
-    <table border='1'>
-        <thead>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Ação</th>
-        </thead>
-        <tbody>
-            <?php while ($linha = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
-            <tr>
-                <td> <?= $linha['id'] ?>  </td>
-                <td> <?= $linha['nome'] ?> </td>
-                <td> <?= $linha['preco'] ?> </td>
-                <td> <a href="delete.php?id=<?= $linha['id'] ?>">Excluir</a></td>
-            </tr>
-            <?php endwhile ?>
-        </tbody>
-    </table>
+    <div style="flex-direction:column; display:flex; justify-content:center; align-items:center; margin-top: 50px;">
+        <div class="card">
+            <h2 style="font-weight:200">Produtos Cadastrados</h2>
+            <table class="styled-table">
+                <thead>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Ação</th>
+                </thead>
+                <tbody>
+                    <?php while ($linha = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
+                        <tr>
+                            <td> <?= $linha['id'] ?> </td>
+                            <td> <?= $linha['nome'] ?> </td>
+                            <td> <?= $linha['preco'] ?> </td>
+                            <td> <a href="delete.php?id=<?= $linha['id'] ?>">Excluir</a></td>
+                        </tr>
+                    <?php endwhile ?>
+                </tbody>
+            </table>
+            <div style="display:flex; justify-content:end;">
+                <a class="button" href="javascript:history.back()">Voltar</a>
+            </div>
+            
+        </div>
+        
+    </div>
+
 
     <!-- Link para voltar ao cadastro de usuarios-->
-    <p><a href="index.php">Voltar</a></p>
+    
 </body>
+
 </html>
